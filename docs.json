@@ -9,14 +9,15 @@
   },
   "favicon": "/favicon.ico",
   "logo": {
-    "light": "https://media.brand.dev/d3d49045-68c2-4822-b33a-6aff1b1a7637.svg",
-    "dark": "https://media.brand.dev/d3d49045-68c2-4822-b33a-6aff1b1a7637.svg"
+    "light": "https://psi-luz.netlify.app/images/logo/PSI.png",
+    "dark": "https://psi-luz.netlify.app/images/logo/PSI.png"
   },
   "navbar": {
     "primary": {
       "type": "github",
       "href": "https://github.com/andrebozaq/PSI"
-    }
+    },
+    "links": []
   },
   "footer": {
     "socials": {
@@ -72,5 +73,20 @@
         ]
       }
     ]
+  },
+  "fonts": {
+    "family": "Roboto"
+  },
+  "thumbnails": {
+    "appearance": "light",
+    "background": "/images/PSI-full.png"
+  },
+  "errors": {
+    "404": {
+      "description": "La página que buscas no existe"
+    }
+  },
+  "background": {
+    "image": "/images/filters_quality(75).webp"
   }
 }
