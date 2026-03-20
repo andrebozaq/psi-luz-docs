@@ -3,7 +3,7 @@
   "name": "PSI — Pressure vessel Support Indicator",
   "theme": "linden",
   "colors": {
-    "primary": "#761792",
+    "primary": "#bf14c9",
     "light": "#e3ceed",
     "dark": "#907099"
   },
