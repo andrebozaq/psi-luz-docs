@@ -85,8 +85,5 @@
     "404": {
       "description": "La página que buscas no existe"
     }
-  },
-  "background": {
-    "image": "/images/filters_quality(75).webp"
   }
 }
