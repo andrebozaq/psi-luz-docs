@@ -3,14 +3,14 @@
   "name": "PSI — Pressure vessel Support Indicator",
   "theme": "linden",
   "colors": {
-    "primary": "#a22bc6",
+    "primary": "#761792",
     "light": "#e3ceed",
     "dark": "#907099"
   },
   "favicon": "/favicon.ico",
   "logo": {
-    "light": "https://psi-luz.netlify.app/images/logo/PSI.png",
-    "dark": "https://psi-luz.netlify.app/images/logo/PSI.png"
+    "light": "/favicon.ico",
+    "dark": "/favicon.ico"
   },
   "navbar": {
     "primary": {
