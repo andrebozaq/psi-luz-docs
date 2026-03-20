@@ -1,0 +1,96 @@
+---
+title: "Support Design"
+description: "Design pressure vessel supports with full geometry, material, load, and code parameters"
+---
+
+The Support Design page (`/soporte-diseno`) is the primary engineering workspace in PSI for configuring support calculations. The page is currently in active development — the route renders a metrics dashboard while the full PSI design form components are built and integrated.
+
+<Note>
+  The `/soporte-diseno` route is under active development. The PSI-specific design form components — including `GeometryCard`, `WindCard`, `SeismicCard`, and the five support type panels — exist in the codebase and are being wired into this route. The current page serves as a placeholder dashboard while integration is finalized.
+</Note>
+
+## PSI Support Design Components
+
+The following components are built and available in the source codebase under `src/pages/Pressure/components/` and `src/pages/Pressure/supports/`. They will form the complete design form once integrated:
+
+### Geometry & Weight (`GeometryCard`)
+
+Collects vessel dimensional and fluid properties. Labels adapt to the active unit system (SI or US Customary).
+
+| Field | SI Unit | US Unit | Notes |
+|---|---|---|---|
+| Diámetro exterior | mm | in | Outer diameter of the vessel shell |
+| Longitud / Altura | mm | in | Length for horizontal vessels; height for vertical columns |
+| Material del recipiente | — | — | Carbon steel, SS 304, SS 316, Alloy steel |
+| Espesor de pared | mm | in | Nominal shell thickness |
+| Espesor de aislamiento | mm | in | External insulation layer |
+| Nivel líquido | % | % | 0–100 %, used to compute liquid weight |
+| Gravedad específica del fluido | — | — | Relative to water (1.0) |
+
+For **Columna vertical** vessels the length field label changes to "Altura". For **Esférico** vessels the length/height field is hidden entirely.
+
+### Wind Loads (`WindCard`)
+
+Collects wind loading parameters for the site:
+
+- **Zona de viento** — automatic zone selection: Zone 1, Zone 2, or Zone 3
+- **Valor de viento (opcional)** — manual override in m/s or kPa (SI) / mph or psf (US)
+- **Categoría de exposición** — terrain roughness: B (urban/suburban), C (open terrain), D (flat/open water)
+- **Factor de importancia** — applied to base wind pressure per the selected code
+
+### Seismic Loads (`SeismicCard`)
+
+Displays different fields based on the active design code.
+
+**ASME/ASCE mode:**
+- Site class: A, B, C, D, E, or F
+- Ss — mapped spectral acceleration at short periods
+- S1 — mapped spectral acceleration at 1-second period
+- Factor de respuesta R — response modification coefficient
+
+**COVENIN mode:**
+- Ciudad — city name for reference
+- Estado — Venezuelan state (Amazonas through Dependencias Federales)
+- Tipo de suelo — S1 (rock), S2, S3, or S4 (soft)
+- Grupo de importancia — A (critical), B1, or B2
+- Factor de respuesta R — response modification coefficient
+
+### Support Type Panels
+
+Five support configurations are available, each with its own parameter form. See the [Support Types](/supports/saddle) section for full parameter documentation.
+
+<CardGroup cols={2}>
+  <Card title="Saddle" icon="columns-3" href="/supports/saddle">
+    Horizontal vessel supports. Location, contact angle, web, base plate, ribs, friction.
+  </Card>
+  <Card title="Skirt" icon="circle-dashed" href="/supports/skirt">
+    Cylindrical or conical skirt for vertical columns. Anchor bolt pattern and optional chairs.
+  </Card>
+  <Card title="Legs" icon="table-columns" href="/supports/legs">
+    Discrete structural legs (unbraced or braced). Profiles, spacing, bolt circle.
+  </Card>
+  <Card title="Lug" icon="paperclip" href="/supports/lug">
+    Welded plate lugs with optional gusset and pad plate sub-configurations.
+  </Card>
+  <Card title="Ring Support" icon="circle" href="/supports/ring-support">
+    Full circumferential ring girder with web, flange, gussets, and bolt circle.
+  </Card>
+  <Card title="Anchoring" icon="anchor" href="/supports/anchoring">
+    Anchor bolt design — bolt quantity, material, embedment, concrete strength, anchor type.
+  </Card>
+</CardGroup>
+
+### Summary Report (`SummaryReport`)
+
+Once the design form is fully integrated, the Summary Report component will consolidate all inputs into a printable document with four sections:
+
+1. **Resumen — Información general** — project name, working fluid, design code, design pressure, design temperature
+2. **Geometry & Weight** — outer diameter, length/height, material, wall thickness
+3. **Wind & Seismic** — wind zone and value, seismic site class or COVENIN location data
+4. **Support configuration** — support type and key geometry summary
+
+The **Imprimir / Exportar** button will open a new browser window with all current stylesheet rules embedded, ready for print or PDF export. See [Engineering Reports](/reference/reports) for full details.
+
+<Tip>
+  The support-specific components (Saddle, Skirt, Legs, Lug, RingSupport, Anchoring) and all design parameter cards are fully coded at `src/pages/Pressure/supports/` and `src/pages/Pressure/components/`. Their parameter documentation is accurate and reflects the actual component implementations.
+</Tip>

@@ -1,0 +1,147 @@
+---
+title: "Quickstart"
+description: "Get from account creation to your first design calculation in under 5 minutes."
+---
+
+This guide walks you through creating an account, navigating the PSI dashboard, and using the support design components.
+
+<Note>
+  PSI is under active development. The support design input components (geometry, wind, seismic, and support type forms) are built in the source and are being integrated into the `/soporte-diseno` route. The step-by-step workflow below reflects the design parameters these components accept. Steps 4–9 describe the inputs you will configure once the full design form is available at that route.
+</Note>
+
+<Steps>
+  <Step title="Create an account">
+    Go to `/registro` and fill in your name, email address, and password to create a new PSI account.
+
+    Once submitted you will be redirected to the sign-in page.
+  </Step>
+
+  <Step title="Sign in">
+    Go to `/login` and enter your email and password, or use the **Log in con Google** or **Log in con X** buttons for social authentication. After successful authentication you will land on the home page (`/inicio`).
+  </Step>
+
+  <Step title="Open Support Design">
+    In the left sidebar, expand **Elementos a presión** and click **Diseño de soportes**. This navigates to `/soporte-diseno`, the support design workspace. The page is actively being developed — the support design components (geometry, wind, seismic, support type panels) exist in the application and are being integrated into this route.
+  </Step>
+
+  <Step title="Select vessel type">
+    At the top of the form, choose the vessel geometry that matches your project:
+
+    | Option | Description |
+    |---|---|
+    | **Horizontal** | Horizontal cylindrical vessel on saddles or ring supports |
+    | **Columna vertical** | Vertical column or tower on skirt or leg supports |
+    | **Esférico** | Spherical pressure vessel on legs or lug supports |
+
+    The geometry and support type options available in subsequent steps depend on this selection.
+  </Step>
+
+  <Step title="Fill in vessel geometry">
+    Complete the **Geometría y Peso** card with your vessel dimensions. All fields use the active unit system (mm for SI, in for US customary):
+
+    - **Diámetro exterior** — outer shell diameter
+    - **Longitud / Altura** — vessel length (horizontal) or height (vertical column)
+    - **Material del recipiente** — choose from Carbon steel, Stainless steel 304, Stainless steel 316, or Alloy steel
+    - **Espesor de pared** — nominal wall thickness
+    - **Espesor de aislamiento** — insulation thickness (enter 0 if bare)
+    - **Nivel líquido (%)** — liquid fill level from 0 to 100 percent
+    - **Gravedad específica del fluido** — specific gravity of the process fluid
+
+    <Tip>
+      You can switch between SI and US customary unit systems at any time using the unit toggle in the interface. All input labels and unit placeholders update automatically — no manual conversion needed.
+    </Tip>
+  </Step>
+
+  <Step title="Configure wind loading">
+    In the **Viento** card, set the wind parameters for your site:
+
+    - **Zona de viento** — select Zone 1, Zone 2, or Zone 3 based on the regional wind hazard map
+    - **Valor de viento (opcional)** — override the zone default with a specific wind speed or pressure (m/s or kPa in SI; mph or psf in US customary)
+    - **Categoría de exposición** — terrain roughness category B (suburban/wooded), C (open terrain), or D (coastal/open water)
+    - **Factor de importancia** — wind importance factor per code (typically 1.0 for standard occupancy)
+  </Step>
+
+  <Step title="Configure seismic loading">
+    In the **Sismo** card, first choose your design code. PSI supports two code families:
+
+    **ASME / ASCE** (for US and international projects following ASCE 7):
+    - **Clase del sitio** — site class A (hard rock) through F (liquefiable)
+    - **Ss** — mapped short-period spectral acceleration
+    - **S1** — mapped 1-second spectral acceleration
+    - **Factor de respuesta R** — response modification factor (varies by support type)
+
+    **COVENIN** (for Venezuelan projects):
+    - **Ciudad** — city name
+    - **Estado** — select from all Venezuelan states including Amazonas, Anzoátegui, Aragua, Bolívar, Carabobo, Distrito Capital, Dependencias Federales, and all others
+    - **Tipo de suelo** — S1 (rock/firm), S2, S3, or S4 (soft/deep alluvium)
+    - **Grupo de importancia** — A (critical/essential), B1, or B2
+    - **Factor de respuesta R** — response modification factor
+  </Step>
+
+  <Step title="Choose a support type and enter its parameters">
+    Select a support type appropriate for your vessel geometry and fill in the corresponding parameter card:
+
+    **Saddle** (horizontal vessels):
+    - Saddle height, location from head weld, contact angle (120° or 150°)
+    - Web thickness, base plate width and length
+    - Number of ribs (3, 5, or 7) and rib thickness
+    - Friction type (Frictionless or High friction)
+
+    **Skirt** (vertical columns):
+    - Skirt height, thickness, and base diameter
+    - Skirt geometry: Cylindrical (Straight) or Conical (Tapered)
+    - Bolt circle diameter, number of anchor bolts, bolt diameter
+    - Optionally enable anchor chairs and specify chair height and top plate dimensions
+
+    **Legs — unbraced** (spherical or vertical vessels):
+    - Leg quantity: 3, 4, 6, or 8
+    - Leg profile: Rectangular, Angle, or Tube
+    - Leg length, bolt circle diameter (Dbc), base plate dimensions
+
+    **Legs — braced** (arriostrada):
+    - Leg quantity, profile: Angle (L), Beam (W/I), Pipe (Sch 40/80), or Square Tube (HSS)
+    - Brace profile (e.g., L2x2x1/4), bracing tiers (1–4)
+
+    **Lug**:
+    - Quantity (2 or 4), elevation, width, length, thickness, eccentricity
+    - Hole diameter, optional stiffener gusset and pad plate dimensions
+
+    **Ring**:
+    - Ring elevation (or distance from head weld for horizontal vessels)
+    - Profile Type A or B, ring OD and ID, web height and thickness, flange width and thickness
+    - Optional gussets: quantity, thickness, and width
+    - Bolt circle diameter
+
+    **Anchoring**:
+    - Bolt quantity (2–12), bolt diameter and material (Carbon steel, Stainless steel, A325, A490)
+    - Embedment depth, concrete strength, edge distance
+    - Anchor type: Hex Head Bolt, L-Hook Bolt, J-Hook Bolt, or Epoxy Anchor
+  </Step>
+
+  <Step title="Review analysis results">
+    Navigate to **Análisis de soportes** (`/soporte-analisis`) in the sidebar. The dashboard displays:
+
+    - Key metrics and stress utilization ratios
+    - Bar charts comparing applied loads against allowable values
+    - Detailed result tables for each check (bending, shear, bearing, buckling)
+    - Session and acquisition summaries for tracking design iterations
+
+    <Note>
+      The analysis page reflects the inputs from your most recent design session. If you update any parameters on the design page, navigate back to the analysis page to see the refreshed results.
+    </Note>
+  </Step>
+
+  <Step title="Print or export the report">
+    Use your browser's print function (Ctrl+P / Cmd+P) from the analysis page to generate a formatted summary report. The report captures your design inputs, loading conditions, and calculated results in a layout suitable for documentation and client submittals.
+
+    For PDF output, select **Save as PDF** in the print dialog.
+  </Step>
+</Steps>
+
+## What's next
+
+Once you have completed your first support design, explore the rest of the application:
+
+- **Materiales ASME VIII DIV 1** (`/basic-tables`) and **DIV 2** (`/data-tables`) — look up allowable stresses by material and temperature
+- **Análisis de soldadura** (`/soldadura-analisis`) and **Diseño de soldadura** (`/soldadura-diseno`) — weld design and analysis for structural connections
+- **Vigas** (`/vigas-analisis`) — beam analysis for supporting structures

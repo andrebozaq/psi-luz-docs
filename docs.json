@@ -1,0 +1,76 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "PSI — Pressure vessel Support Indicator",
+  "theme": "linden",
+  "colors": {
+    "primary": "#0a1618",
+    "light": "#cfebed",
+    "dark": "#70969a"
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "https://media.brand.dev/d3d49045-68c2-4822-b33a-6aff1b1a7637.svg",
+    "dark": "https://media.brand.dev/d3d49045-68c2-4822-b33a-6aff1b1a7637.svg"
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/andrebozaq/PSI"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/andrebozaq/PSI"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["introduction", "quickstart"]
+          },
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/pressure-vessels",
+              "features/support-design",
+              "features/support-analysis",
+              "features/structural-elements",
+              "features/weld-design"
+            ]
+          },
+          {
+            "group": "Loads & Codes",
+            "pages": [
+              "loads/wind-loads",
+              "loads/seismic-loads",
+              "loads/design-codes"
+            ]
+          },
+          {
+            "group": "Support Types",
+            "pages": [
+              "supports/saddle",
+              "supports/skirt",
+              "supports/legs",
+              "supports/lug",
+              "supports/ring-support",
+              "supports/anchoring"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "reference/materials",
+              "reference/unit-systems",
+              "reference/reports"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
